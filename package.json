@@ -63,7 +63,7 @@
     "aws-cdk-exec": "^0.0.5",
     "aws-cdk-lib": "^2.21.1",
     "aws-lambda": "^1.0.7",
-    "aws-sdk": "^2.1210.0",
+    "aws-sdk": "^2.1414.0",
     "cdk-nag": "^2.15.45",
     "child_process": "^1.0.2",
     "constructs": "^10.0.0",
