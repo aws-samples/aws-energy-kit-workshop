@@ -1,0 +1,15 @@
+[Unit]
+Description= publish and subscribe to AWS IoT MQTT messages
+After=network.target
+
+[Service]
+Type=idle
+RemainAfterExit=yes
+ExecStart=/usr/bin/python3 /etc/energykit-embedded/energykit_run_telemetry.py
+Restart=always
+RestartSec=10s
+KillMode=process
+TimeoutStartSec=0
+
+[Install]
+WantedBy=multi-user.target

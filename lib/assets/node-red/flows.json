@@ -1,0 +1,448 @@
+[
+    {
+        "id": "3a02ebf.434c414",
+        "type": "tab",
+        "label": "EnergyKit Simulator",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "d8a3c7a9.300dc8",
+        "type": "inject",
+        "z": "3a02ebf.434c414",
+        "name": "ON",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 670,
+        "y": 280,
+        "wires": [
+            [
+                "caef8a2a.975988"
+            ]
+        ],
+        "icon": "node-red/status.svg"
+    },
+    {
+        "id": "77d06e7.fb6c69",
+        "type": "inject",
+        "z": "3a02ebf.434c414",
+        "name": "OFF",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "false",
+        "payloadType": "bool",
+        "x": 670,
+        "y": 360,
+        "wires": [
+            [
+                "caef8a2a.975988"
+            ]
+        ],
+        "icon": "font-awesome/fa-ban"
+    },
+    {
+        "id": "caef8a2a.975988",
+        "type": "change",
+        "z": "3a02ebf.434c414",
+        "name": "Enable EnergyKit Simulator Flow",
+        "rules": [
+            {
+                "t": "set",
+                "p": "start-stop",
+                "pt": "flow",
+                "to": "payload",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 1000,
+        "y": 320,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "b88646ea.70d368",
+        "type": "switch",
+        "z": "3a02ebf.434c414",
+        "name": "flow enabled?",
+        "property": "start-stop",
+        "propertyType": "flow",
+        "rules": [
+            {
+                "t": "true"
+            }
+        ],
+        "checkall": "true",
+        "repair": false,
+        "outputs": 1,
+        "x": 760,
+        "y": 560,
+        "wires": [
+            [
+                "e290e7a5.756418"
+            ]
+        ]
+    },
+    {
+        "id": "88bd43f6.20af1",
+        "type": "inject",
+        "z": "3a02ebf.434c414",
+        "name": "Trigger Simulator",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "0.1",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 550,
+        "y": 560,
+        "wires": [
+            [
+                "b88646ea.70d368"
+            ]
+        ]
+    },
+    {
+        "id": "e290e7a5.756418",
+        "type": "function",
+        "z": "3a02ebf.434c414",
+        "name": "Generate Synthetic Data",
+        "func": "const sensorConfig = {\n  \"city\": \"Ashburn\", \n  \"region\": \"Virginia\", \n  \"country\": \"United States\", \n  \"lat\": 39.017388, \n  \"long\": -77.468037,\n  \"thingName\": os.hostname()\n}\n\nconst base = {\n  \"temp\": 27,\n  \"pressure\": 30,\n  \"humidity\": 20,\n  \"altitude\": 5,\n  \"current\": 15,\n  \"voltage\": 10,\n  \"power\": 1,\n  \"rpm\": 50,\n  \"gearboxVibration\": 12,\n};\n\nlet seq = flow.seq || 0;\n\nfunction randomize(metric_value, variance_percent, dataType) {\n  var plus_or_minus = Math.random() < 0.5 ? -1 : 1;\n  var random_variance =\n    (plus_or_minus * Math.random() * metric_value * variance_percent) / 100;\n\n  if (dataType === \"Int32\") {\n    metric_value = Math.floor(metric_value + random_variance);\n  } else if (dataType === \"Float\") {\n    metric_value = metric_value + random_variance;\n  }\n\n  return metric_value;\n}\n\nmsg.payload = {\n  sensorTimestamp: new Date().getTime() / 1000,\n  assetId: sensorConfig[\"thingName\"],\n  temp: randomize(base[\"temp\"], 10, \"Int32\"),\n  pressure: randomize(base[\"pressure\"], 119, \"Int32\"),\n  humidity: randomize(base[\"humidity\"], 30, \"Int32\"),\n  altitude: randomize(base[\"altitude\"], 0, \"Int32\"),\n  current: randomize(base[\"current\"], 50, \"Int32\"),\n  voltage: randomize(base[\"voltage\"], 50, \"Int32\"),\n  power: randomize(base[\"power\"], 30, \"Int32\"),\n  rpm: randomize(base[\"rpm\"], 90, \"Int32\"),\n  gearboxVibration: randomize(base[\"gearboxVibration\"], 30, \"Int32\"),\n  city: sensorConfig[\"city\"],\n  country: sensorConfig[\"country\"],\n  countryCode: \"US\",\n  zip: \"20148\",\n  lat: sensorConfig[\"lat\"],\n  long: sensorConfig[\"long\"],\n  region: sensorConfig[\"region\"],\n  status: \"Active\",\n  lastMaintenance: \"today\",   \n  seq: seq\n};\n\nflow.seq = seq + 1;\n\nmsg.topic = `energykit/wind/telemetry/${os.hostname}`;\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [
+            {
+                "var": "os",
+                "module": "os"
+            }
+        ],
+        "x": 970,
+        "y": 560,
+        "wires": [
+            [
+                "46aeb359.a931ac",
+                "1a2f21a7.e1c5ce",
+                "c276919a2fa25f87"
+            ]
+        ],
+        "icon": "node-red-dashboard/ui_chart.png"
+    },
+    {
+        "id": "1a2f21a7.e1c5ce",
+        "type": "mqtt out",
+        "z": "3a02ebf.434c414",
+        "name": "EnergyKit Simulator Greengrass Core Device",
+        "topic": "",
+        "qos": "0",
+        "retain": "",
+        "respTopic": "",
+        "contentType": "",
+        "userProps": "",
+        "correl": "",
+        "expiry": "",
+        "broker": "7589410c.e843f",
+        "x": 1330,
+        "y": 520,
+        "wires": [],
+        "icon": "node-red-contrib-aws-iot-custom-auth/aws-iot.png"
+    },
+    {
+        "id": "cb80a12e.8dede",
+        "type": "debug",
+        "z": "3a02ebf.434c414",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1110,
+        "y": 740,
+        "wires": []
+    },
+    {
+        "id": "8bef0f82.32b82",
+        "type": "ui_template",
+        "z": "3a02ebf.434c414",
+        "group": "5508b72f.edb888",
+        "name": "Temp",
+        "order": 1,
+        "width": "0",
+        "height": "0",
+        "format": "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css\">\n <script src=\"https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js\"></script>\n <script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n <script src=\"https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js\"></script>\n <style>\n.nr-dashboard-theme .nr-dashboard-template path {\n    fill: none !important;\n}\n</style>\n<h3 align=\"center\">Temperature Series</h3>\n<div id=\"temperature-chart\" style=\"height: 250px;\"></div>\n<script>\n\n(function(scope) {\n var timer = setInterval(function() { //check that the Morris libs are loaded, if not wait\n if (!window.Morris) return;\n clearInterval(timer);\n \n var myData;\n \n var temperature_line = Morris.Line({\n element: 'temperature-chart',\n data: [\n {timestamp: \"2011-10-05T14:48:00.000Z\", value: 100, mean_value: 83, std_value: 15 },\n {timestamp: \"2011-10-05T14:49:00.000Z\", value: 59, mean_value: 80, std_value: 18}\n ],\n xkey: 'timestamp',\n ykeys: ['value', 'mean_value', 'std_value'],\n labels: ['Temperature', 'Mean Temperature', 'Standard Deviation'],\n fillOpacity: 0.0,\n xLabels: \"15sec\",\n pointSize: 3\n });\n \n scope.$watch('msg', function (msg) { //watch for an incoming NR msg\n if (msg) {\n \n myData = msg.payload;\n temp_data = Object.keys(myData['temp']).map(function(key) {\n    if(myData.hasOwnProperty(\"temperature_mean\")) {\n        return {\n            'timestamp': (new Date(Number(key))).toISOString(), \n            'value': Math.round(myData['temp'][key],2), \n            'mean_value': Math.round(myData['temp_mean'][key],2),\n            'std_value': Math.round(myData['temp_std'][key],2)\n            };\n    } else {\n        return {'timestamp': (new Date(Number(key))).toISOString(), 'value': Math.round(myData['temp'][key],2)};\n    }\n  \n });\n\n temp_line.setData(temp_data);\n \n };\n }); //close out the watch \n }, 100); // close out the setInterval \n})(scope);\n\n\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1090,
+        "y": 800,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "49dd7243.c799ec",
+        "type": "ui_template",
+        "z": "3a02ebf.434c414",
+        "group": "5508b72f.edb888",
+        "name": "RPM",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css\">\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js\"></script>\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js\"></script>\n<style>\n    .nr-dashboard-theme .nr-dashboard-template path {\n    fill: none !important;\n}\n</style>\n<h3 align=\"center\">RPM Series</h3>\n<div id=\"rpm-chart\" style=\"height: 250px;\"></div>\n<script>\n\n(function(scope) {\n var timer = setInterval(function() { //check that the Morris libs are loaded, if not wait\n if (!window.Morris) return;\n clearInterval(timer);\n \n var myData;\n \n var rpm_line = Morris.Line({\n element: 'rpm-chart',\n data: [\n {timestamp: \"2011-10-05T14:48:00.000Z\", value: 115, mean_value: 102, std_value: 45 },\n {timestamp: \"2011-10-05T14:49:00.000Z\", value: 87, mean_value: 81, std_value: 23 }\n ],\n xkey: 'timestamp',\n ykeys: ['value', 'mean_value', 'std_value'],\n labels: ['RPM', 'Mean RPM', 'Standard Deviation'],\n fillOpacity: 0.0,\n xLabels: \"15sec\",\n pointSize: 3\n });\n \n scope.$watch('msg', function (msg) { //watch for an incoming NR msg\n if (msg) {\n \n myData = msg.payload;\n rpm_data = Object.keys(myData['rpm']).map(function(key) {\n  if(myData.hasOwnProperty(\"rpm_mean\")) {\n        return {\n            'timestamp': (new Date(Number(key))).toISOString(), \n            'value': Math.round(myData['rpm'][key],2), \n            'mean_value': Math.round(myData['rpm_mean'][key],2),\n            'std_value': Math.round(myData['rpm_std'][key],2)\n            };\n    } else {\n        return {'timestamp': (new Date(Number(key))).toISOString(), 'value': Math.round(myData['rpm'][key],2)};\n    }\n });\n\n rpm_line.setData(rpm_data);\n };\n }); //close out the watch \n }, 100); // close out the setInterval \n})(scope);\n\n\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1090,
+        "y": 860,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "a9fb8576.4b9468",
+        "type": "ui_template",
+        "z": "3a02ebf.434c414",
+        "group": "5508b72f.edb888",
+        "name": "Vibration",
+        "order": 1,
+        "width": 0,
+        "height": 0,
+        "format": "<link rel=\"stylesheet\" href=\"https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.css\">\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js\"></script>\n<script src=\"https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js\"></script>\n<script src=\"https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js\"></script>\n<style>\n    .nr-dashboard-theme .nr-dashboard-template path {\n    fill: none !important;\n}\n</style>\n<h3 align=\"center\">Vibration Series</h3>\n<div id=\"vibration-chart\" style=\"height: 250px;\"></div>\n<script>\n\n(function(scope) {\n var timer = setInterval(function() { //check that the Morris libs are loaded, if not wait\n if (!window.Morris) return;\n clearInterval(timer);\n \n var myData;\n \n var vibration_line = Morris.Line({\n element: 'vibration-chart',\n data: [\n {timestamp: \"2011-10-05T14:48:00.000Z\", value: 37, mean_value: 33, std_value: 12 },\n {timestamp: \"2011-10-05T14:49:00.000Z\", value: 42, mean_value: 30, std_value: 15 }\n ],\n xkey: 'timestamp',\n ykeys: ['value', 'mean_value', 'std_value'],\n labels: ['Vibration', 'Mean Vibration', 'Standard Deviation'],\n fillOpacity: 0.0,\n xLabels: \"15sec\",\n pointSize: 3\n });\n \n scope.$watch('msg', function (msg) { //watch for an incoming NR msg\n if (msg) {\n \n myData = msg.payload;\nvibration_data = Object.keys(myData['vibration']).map(function(key) {\n  if(myData.hasOwnProperty(\"vibration_mean\")) {\n        return {\n            'timestamp': (new Date(Number(key))).toISOString(), \n            'value': Math.round(myData['vibration'][key],2), \n            'mean_value': Math.round(myData['vibration_mean'][key],2),\n            'std_value': Math.round(myData['vibration_std'][key],2)\n            };\n    } else {\n        return {'timestamp': (new Date(Number(key))).toISOString(), 'value': Math.round(myData['vibration'][key],2)};\n    }\n });\n\nvibration_line.setData(vibration_data);\n };\n }); //close out the watch \n }, 100); // close out the setInterval \n})(scope);\n\n\n</script>",
+        "storeOutMessages": true,
+        "fwdInMessages": true,
+        "resendOnRefresh": false,
+        "templateScope": "local",
+        "className": "",
+        "x": 1100,
+        "y": 920,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d00d3b3.812f4c8",
+        "type": "function",
+        "z": "3a02ebf.434c414",
+        "name": "Format payload",
+        "func": "msg.payload = JSON.parse(msg.payload)\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 600,
+        "y": 800,
+        "wires": [
+            [
+                "cb80a12e.8dede",
+                "8bef0f82.32b82",
+                "49dd7243.c799ec",
+                "a9fb8576.4b9468"
+            ]
+        ]
+    },
+    {
+        "id": "46aeb359.a931ac",
+        "type": "debug",
+        "z": "3a02ebf.434c414",
+        "name": "EnergyKit Turbine MQTT Payload",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1300,
+        "y": 620,
+        "wires": []
+    },
+    {
+        "id": "76da3a3aa53a899a",
+        "type": "comment",
+        "z": "3a02ebf.434c414",
+        "name": "Start Here",
+        "info": "_This node turns the simulator on and off. When node-red starts up this will default to \"on\", but after that you can turn it on and off as needed. Select the blue button next to \"OFF\" to turn it off. Select the blue box next to \"ON\" to turn simulated data on._",
+        "x": 500,
+        "y": 320,
+        "wires": []
+    },
+    {
+        "id": "27bf98b10f20d13b",
+        "type": "comment",
+        "z": "3a02ebf.434c414",
+        "name": "More about the Trigger node",
+        "info": "This node triggers a javascript function that writes to the MQTT message flow.",
+        "x": 560,
+        "y": 500,
+        "wires": []
+    },
+    {
+        "id": "16b7a08399e08b0a",
+        "type": "comment",
+        "z": "3a02ebf.434c414",
+        "name": "About the Greengrass Core device node",
+        "info": "This represents the MQTT Broker connection to the local Greengrass core device. This node requires a Greengrass core device running MQTT bridge and local client auth. In order to send bridged messages your client device has to be associated with the greengrass core device and the MQTT topics need to be permitted.",
+        "x": 1320,
+        "y": 460,
+        "wires": []
+    },
+    {
+        "id": "c276919a2fa25f87",
+        "type": "debug",
+        "z": "3a02ebf.434c414",
+        "name": "General Debug Output",
+        "active": true,
+        "tosidebar": false,
+        "console": false,
+        "tostatus": false,
+        "complete": "error.message",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1260,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "09442dcfacbb0f92",
+        "type": "inject",
+        "z": "3a02ebf.434c414",
+        "name": "Default to Start Simulation",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "true",
+        "payloadType": "bool",
+        "x": 600,
+        "y": 200,
+        "wires": [
+            [
+                "caef8a2a.975988"
+            ]
+        ],
+        "icon": "node-red-dashboard/ui_switch.png"
+    },
+    {
+        "id": "7589410c.e843f",
+        "type": "mqtt-broker",
+        "name": "EnergyKit Simulator Greengrass Core MQTT Broker",
+        "broker": "INSERT_GREENGRASS_CORE_DEVICE_LOCAL_IP_ADDRESS",
+        "port": "8883",
+        "tls": "cc273fb2.246ac",
+        "clientid": "INSERT_CLIENT_DEVICE_THING_NAME",
+        "autoConnect": true,
+        "usetls": true,
+        "protocolVersion": "4",
+        "keepalive": "30",
+        "cleansession": false,
+        "birthTopic": "",
+        "birthQos": "0",
+        "birthPayload": "",
+        "birthMsg": {},
+        "closeTopic": "",
+        "closeQos": "0",
+        "closePayload": "",
+        "closeMsg": {},
+        "willTopic": "",
+        "willQos": "0",
+        "willPayload": "",
+        "willMsg": {},
+        "userProps": "",
+        "sessionExpiry": ""
+    },
+    {
+        "id": "5508b72f.edb888",
+        "type": "ui_group",
+        "name": "Time-Series Metrics",
+        "tab": "d2d5bd2c.059d3",
+        "order": 1,
+        "disp": true,
+        "width": "16",
+        "collapse": false
+    },
+    {
+        "id": "cc273fb2.246ac",
+        "type": "tls-config",
+        "name": "",
+        "cert": "/home/ubuntu/.awscerts/device.pem.crt",
+        "key": "/home/ubuntu/.awscerts/private.pem.key",
+        "ca": "/home/ubuntu/.awscerts/AmazonRootCA1.pem",
+        "certname": "",
+        "keyname": "",
+        "caname": "",
+        "servername": "",
+        "verifyservercert": false,
+        "alpnprotocol": ""
+    },
+    {
+        "id": "d2d5bd2c.059d3",
+        "type": "ui_tab",
+        "name": "Home",
+        "icon": "dashboard",
+        "disabled": false,
+        "hidden": false
+    }
+]

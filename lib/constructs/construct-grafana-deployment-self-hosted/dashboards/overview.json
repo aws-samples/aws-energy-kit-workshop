@@ -1,0 +1,518 @@
+{
+    "annotations": {
+      "list": [
+        {
+          "builtIn": 1,
+          "datasource": "-- Grafana --",
+          "enable": true,
+          "hide": true,
+          "iconColor": "rgba(0, 211, 255, 1)",
+          "name": "Annotations & Alerts",
+          "target": {
+            "limit": 100,
+            "matchAny": false,
+            "tags": [],
+            "type": "dashboard"
+          },
+          "type": "dashboard"
+        }
+      ]
+    },
+    "description": "",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "iteration": 1667102811253,
+    "links": [],
+    "liveNow": false,
+    "panels": [
+      {
+        "gridPos": {
+          "h": 18,
+          "w": 17,
+          "x": 0,
+          "y": 0
+        },
+        "id": 6,
+        "options": {
+          "customSelCompVarName": "${sel_comp}",
+          "customSelEntityVarName": "${sel_entity}",
+          "datasource": "",
+          "sceneId": "simulatorsummaryView"
+        },
+        "targets": [
+          {
+            "componentTypeId": "com.amazon.iottwinmaker.alarm.basic",
+            "datasource": {
+              "type": "grafana-iot-twinmaker-datasource",
+              "uid": ""
+            },
+            "properties": [
+              "alarm_status"
+            ],
+            "queryType": "ComponentHistory",
+            "refId": "A"
+          }
+        ],
+        "title": "Summary View",
+        "type": "grafana-iot-twinmaker-sceneviewer-panel"
+      },
+      {
+        "datasource": {
+          "id": "1",
+          "type": "grafana-iot-twinmaker-datasource"
+        },
+        "gridPos": {
+          "h": 18,
+          "w": 7,
+          "x": 17,
+          "y": 0
+        },
+        "id": 41,
+        "options": {
+          "datasource": "",
+          "sceneId": "simulatortopView"
+        },
+        "pluginVersion": "8.4.7",
+        "targets": [
+          {
+            "componentName": "SitewiseTurbineTelemetry",
+            "datasource": {
+              "id": "1",
+              "type": "grafana-iot-twinmaker-datasource"
+            },
+            "entityId": "206af70a-ddc1-471d-a757-f17ec50b8e92",
+            "properties": [
+              "alarm_status"
+            ],
+            "queryType": "EntityHistory",
+            "refId": "A"
+          }
+        ],
+        "title": "Top View",
+        "transformations": [
+          {
+            "id": "twinmaker-register-links",
+            "options": {
+              "addSelectionField": false,
+              "vars": [
+                {
+                  "fieldName": "entityName",
+                  "name": "${sel_entity_name}"
+                },
+                {
+                  "fieldName": "entityId",
+                  "name": "${sel_entity}"
+                },
+                {
+                  "fieldName": "alarmName",
+                  "name": "${sel_comp}"
+                }
+              ]
+            }
+          }
+        ],
+        "type": "grafana-iot-twinmaker-sceneviewer-panel"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-BlPu"
+            },
+            "displayName": "Rotation",
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "rotrpm"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 0,
+          "y": 18
+        },
+        "id": 58,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "8.4.7",
+        "targets": [
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "grafana"
+            },
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "title": "RPM",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "displayName": "Vibration",
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "accMS2"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 6,
+          "x": 6,
+          "y": 18
+        },
+        "id": 60,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "8.4.7",
+        "targets": [
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "grafana"
+            },
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "title": "Vibration",
+        "type": "gauge"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "continuous-BlYlRd"
+            },
+            "displayName": "Temperature",
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            },
+            "unit": "fahrenheit"
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 8,
+          "w": 5,
+          "x": 12,
+          "y": 18
+        },
+        "id": 62,
+        "options": {
+          "orientation": "auto",
+          "reduceOptions": {
+            "calcs": [
+              "lastNotNull"
+            ],
+            "fields": "",
+            "values": false
+          },
+          "showThresholdLabels": false,
+          "showThresholdMarkers": true
+        },
+        "pluginVersion": "8.4.7",
+        "targets": [
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "grafana"
+            },
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "title": "Temp",
+        "type": "gauge"
+      },
+      {
+        "gridPos": {
+          "h": 8,
+          "w": 7,
+          "x": 17,
+          "y": 18
+        },
+        "id": 64,
+        "options": {
+          "datasource": "",
+          "sceneId": "simulatordriveSystemView"
+        },
+        "title": "Drive System",
+        "type": "grafana-iot-twinmaker-sceneviewer-panel"
+      },
+      {
+        "datasource": {
+          "type": "datasource",
+          "uid": "grafana"
+        },
+        "fieldConfig": {
+          "defaults": {
+            "color": {
+              "mode": "thresholds"
+            },
+            "custom": {
+              "hideFrom": {
+                "legend": false,
+                "tooltip": false,
+                "viz": false
+              }
+            },
+            "mappings": [],
+            "thresholds": {
+              "mode": "absolute",
+              "steps": [
+                {
+                  "color": "green",
+                  "value": null
+                },
+                {
+                  "color": "red",
+                  "value": 80
+                }
+              ]
+            }
+          },
+          "overrides": []
+        },
+        "gridPos": {
+          "h": 12,
+          "w": 24,
+          "x": 0,
+          "y": 26
+        },
+        "id": 66,
+        "options": {
+          "basemap": {
+            "config": {},
+            "name": "Layer 0",
+            "type": "default"
+          },
+          "controls": {
+            "mouseWheelZoom": true,
+            "showAttribution": true,
+            "showDebug": false,
+            "showScale": false,
+            "showZoom": true
+          },
+          "layers": [
+            {
+              "config": {
+                "blur": 9,
+                "radius": 22,
+                "weight": {
+                  "fixed": 1,
+                  "max": 1,
+                  "min": 0
+                }
+              },
+              "name": "Layer 1",
+              "tooltip": true,
+              "type": "heatmap"
+            }
+          ],
+          "view": {
+            "id": "coords",
+            "lat": 46,
+            "lon": 14,
+            "zoom": 4
+          }
+        },
+        "pluginVersion": "8.4.7",
+        "targets": [
+          {
+            "datasource": {
+              "type": "datasource",
+              "uid": "grafana"
+            },
+            "queryType": "randomWalk",
+            "refId": "A"
+          }
+        ],
+        "title": "Panel Title",
+        "type": "geomap"
+      },
+      {
+        "collapsed": false,
+        "gridPos": {
+          "h": 1,
+          "w": 24,
+          "x": 0,
+          "y": 38
+        },
+        "id": 52,
+        "panels": [],
+        "title": "Alarms",
+        "type": "row"
+      }
+    ],
+    "refresh": "1m",
+    "schemaVersion": 35,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+      "list": [
+        {
+          "current": {
+            "selected": false,
+            "text": "wind",
+            "value": "wind"
+          },
+          "hide": 2,
+          "name": "sel_entity_name",
+          "options": [
+            {
+              "selected": true,
+              "text": "wind",
+              "value": "wind"
+            }
+          ],
+          "query": "watertank",
+          "skipUrlSync": false,
+          "type": "textbox"
+        },
+        {
+          "current": {
+            "selected": true,
+            "text": "wind",
+            "value": "wind"
+          },
+          "hide": 0,
+          "name": "sel_entity",
+          "options": [
+            {
+              "selected": true,
+              "text": "wind",
+              "value": "wind"
+            }
+          ],
+          "query": "watertank",
+          "skipUrlSync": false,
+          "type": "textbox"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "WaterTank",
+            "value": "WaterTank"
+          },
+          "hide": 2,
+          "name": "sel_comp",
+          "options": [
+            {
+              "selected": true,
+              "text": "WaterTank",
+              "value": "WaterTank"
+            }
+          ],
+          "query": "WaterTank",
+          "skipUrlSync": false,
+          "type": "textbox"
+        },
+        {
+          "current": {
+            "selected": false,
+            "text": "wind",
+            "value": "wind"
+          },
+          "hide": 0,
+          "label": "",
+          "name": "kvs_stream_name",
+          "options": [
+            {
+              "selected": true,
+              "text": "wind",
+              "value": "wind"
+            }
+          ],
+          "query": "watertank",
+          "skipUrlSync": false,
+          "type": "textbox"
+        }
+      ]
+    },
+    "time": {
+      "from": "now-5m",
+      "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "Overview",
+    "uid": "l5jhMPH4k",
+    "version": 16,
+    "weekStart": ""
+  }

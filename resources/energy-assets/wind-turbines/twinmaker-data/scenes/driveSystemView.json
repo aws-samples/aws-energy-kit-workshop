@@ -1,0 +1,208 @@
+{
+    "specVersion": "1.0",
+    "version": "1",
+    "unit": "meters",
+    "properties": {},
+    "nodes": [
+        {
+            "name": "TurbineGeneratorView",
+            "transform": {
+                "position": [
+                    0,
+                    1.0357658390299318,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "children": [
+                1,
+                2
+            ],
+            "components": [
+                {
+                    "type": "ModelRef",
+                    "uri": "${bucket}/orangeTurbineGenerator.glb",
+                    "modelType": "GLB"
+                },
+                {
+                    "type": "ModelShader",
+                    "valueDataBinding": {
+                        "dataBindingContext": {
+                            "entityId": "0380451d-2dfc-442f-b2f1-97a919fa351d",
+                            "componentName": "turbineSitewiseTelemetry",
+                            "propertyName": "vibration",
+                            "entityPath": " turbine-simulator-west"
+                        },
+                        "dataFrameLabel": ""
+                    },
+                    "ruleBasedMapId": "driveSystemVibrationAlarm"
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "MotionIndicator",
+            "transform": {
+                "position": [
+                    1.338414060821735,
+                    0,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    1.5707963267948966
+                ],
+                "scale": [
+                    1,
+                    2,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "MotionIndicator",
+                    "shape": "CircularCylinder",
+                    "valueDataBindings": {
+                        "foregroundColor": {},
+                        "speed": {
+                            "valueDataBinding": {
+                                "dataBindingContext": {
+                                    "entityId": "",
+                                    "componentName": "",
+                                    "propertyName": "",
+                                    "entityPath": ""
+                                },
+                                "dataFrameLabel": ""
+                            },
+                            "ruleBasedMapId": "driveSystemRpmIndicator"
+                        }
+                    },
+                    "config": {
+                        "numOfRepeatInY": 1,
+                        "backgroundColorOpacity": 1
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "HemisphereLight",
+            "transform": {
+                "position": [
+                    0,
+                    0,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "Light",
+                    "lightType": "Hemisphere",
+                    "lightSettings": {
+                        "color": 16777215,
+                        "groundColor": 3355443,
+                        "intensity": 1
+                    }
+                }
+            ],
+            "properties": {}
+        }
+    ],
+    "rootNodeIndexes": [
+        0
+    ],
+    "cameras": [],
+    "rules": {
+        "sampleAlarmIconRule": {
+            "statements": [
+                {
+                    "expression": "alarm_status == 'ACTIVE'",
+                    "target": "iottwinmaker.common.icon:Error"
+                },
+                {
+                    "expression": "alarm_status == 'ACKNOWLEDGED'",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "alarm_status == 'SNOOZE_DISABLED'",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "alarm_status == 'NORMAL'",
+                    "target": "iottwinmaker.common.icon:Info"
+                }
+            ]
+        },
+        "sampleTimeSeriesIconRule": {
+            "statements": [
+                {
+                    "expression": "temperature >= 40",
+                    "target": "iottwinmaker.common.icon:Error"
+                },
+                {
+                    "expression": "temperature >= 20",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "temperature < 20",
+                    "target": "iottwinmaker.common.icon:Info"
+                }
+            ]
+        },
+        "sampleTimeSeriesColorRule": {
+            "statements": [
+                {
+                    "expression": "temperature >= 40",
+                    "target": "iottwinmaker.common.color:#FF0000"
+                },
+                {
+                    "expression": "temperature >= 20",
+                    "target": "iottwinmaker.common.color:#FFFF00"
+                },
+                {
+                    "expression": "temperature < 20",
+                    "target": "iottwinmaker.common.color:#00FF00"
+                }
+            ]
+        },
+        "driveSystemVibrationAlarm": {
+            "statements": [
+                {
+                    "expression": "vibration > 15",
+                    "target": "iottwinmaker.common.color:#d13212"
+                }
+            ]
+        },
+        "driveSystemRpmIndicator": {
+            "statements": [
+                {
+                    "expression": "rpm",
+                    "target": "iottwinmaker.common.number"
+                }
+            ]
+        }
+    }
+}

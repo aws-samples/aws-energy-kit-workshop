@@ -1,0 +1,25 @@
+version: 1
+frontend:
+  phases:
+    preBuild:
+      commands:
+        - npm install
+    build:
+      commands:
+        - echo "VITE_REGION=$REGION" >> .env
+        - echo "VITE_IDENTITY_POOL_ID=$IDENTITY_POOL_ID" >> .env
+        - echo "VITE_USER_POOL_ID=$USER_POOL_ID" >> .env
+        - echo "VITE_USER_POOL_WEB_CLIENT_ID=$USER_POOL_WEB_CLIENT_ID" >> .env
+        - echo "VITE_IOT_SUB_TOPIC=$IOT_SUB_TOPIC" >> .env
+        - echo "VITE_IOT_PUB_TOPIC=$IOT_PUB_TOPIC" >> .env
+        - echo "VITE_IOT_ENDPOINT=$IOT_ENDPOINT" >> .env
+        - echo "Printing environmental variables to the console to ensure they are correct"
+        - cat .env
+        - npm run build
+        - echo "Success!"
+  artifacts:
+    baseDirectory: build
+    files:
+      - '**/*'
+  cache:
+    paths:

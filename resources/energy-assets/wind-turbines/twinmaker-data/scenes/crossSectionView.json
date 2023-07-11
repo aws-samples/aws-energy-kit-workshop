@@ -1,0 +1,155 @@
+{
+    "specVersion": "1.0",
+    "version": "1",
+    "unit": "meters",
+    "properties": {},
+    "nodes": [
+        {
+            "name": "BladeAssemblyView",
+            "transform": {
+                "position": [
+                    0,
+                    -7.555175142247009,
+                    8.640504593915766
+                ],
+                "rotation": [
+                    4.71238898038469,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "children": [
+                1,
+                2
+            ],
+            "components": [],
+            "properties": {}
+        },
+        {
+            "name": "BladeAssembly",
+            "transform": {
+                "position": [
+                    0,
+                    0,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    50,
+                    50,
+                    50
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "ModelRef",
+                    "uri": "${bucket}/turbineTopViewExploded.glb",
+                    "modelType": "GLB"
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "Light",
+            "transform": {
+                "position": [
+                    0,
+                    0,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "Light",
+                    "lightType": "Hemisphere",
+                    "lightSettings": {
+                        "color": 13222851,
+                        "groundColor": 3355443,
+                        "intensity": 1
+                    }
+                }
+            ],
+            "properties": {}
+        }
+    ],
+    "rootNodeIndexes": [
+        0
+    ],
+    "cameras": [],
+    "rules": {
+        "sampleAlarmIconRule": {
+            "statements": [
+                {
+                    "expression": "alarm_status == 'ACTIVE'",
+                    "target": "iottwinmaker.common.icon:Error"
+                },
+                {
+                    "expression": "alarm_status == 'ACKNOWLEDGED'",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "alarm_status == 'SNOOZE_DISABLED'",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "alarm_status == 'NORMAL'",
+                    "target": "iottwinmaker.common.icon:Info"
+                }
+            ]
+        },
+        "sampleTimeSeriesIconRule": {
+            "statements": [
+                {
+                    "expression": "temperature >= 40",
+                    "target": "iottwinmaker.common.icon:Error"
+                },
+                {
+                    "expression": "temperature >= 20",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "temperature < 20",
+                    "target": "iottwinmaker.common.icon:Info"
+                }
+            ]
+        },
+        "sampleTimeSeriesColorRule": {
+            "statements": [
+                {
+                    "expression": "temperature >= 40",
+                    "target": "iottwinmaker.common.color:#FF0000"
+                },
+                {
+                    "expression": "temperature >= 20",
+                    "target": "iottwinmaker.common.color:#FFFF00"
+                },
+                {
+                    "expression": "temperature < 20",
+                    "target": "iottwinmaker.common.color:#00FF00"
+                }
+            ]
+        }
+    }
+}

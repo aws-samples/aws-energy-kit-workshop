@@ -1,0 +1,13 @@
+{
+  "adminEmail": "youremail@email.com",
+  "wifiSsid": "YourWifiSsidHere",
+  "projectName": "EnergyKit",
+  "energyCategory": "wind",
+  "deployIotStack": true,
+  "deployTwinmakerStack": true,
+  "deployWebStack": true,
+  "deploySimulatorStack": true,
+  "workshopOption": false,
+  "nagEnabled": false,
+  "DEPLOYMENT_ENV": "DEV"
+}

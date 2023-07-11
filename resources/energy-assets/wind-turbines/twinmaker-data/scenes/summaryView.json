@@ -1,0 +1,595 @@
+{
+    "specVersion": "1.0",
+    "version": "1",
+    "unit": "meters",
+    "properties": {},
+    "nodes": [
+        {
+            "name": "SummaryView",
+            "transform": {
+                "position": [
+                    1.4544880249148164,
+                    0.24172129789124852,
+                    0.34206530829361204
+                ],
+                "rotation": [
+                    0,
+                    -1.5707963267948966,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "children": [
+                1,
+                11
+            ],
+            "components": [],
+            "properties": {}
+        },
+        {
+            "name": "EnergyKit Turbine Environment",
+            "transform": {
+                "position": [
+                    -0.2771624247984792,
+                    0.03226100995091252,
+                    -12.804907013873962
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "children": [
+                2,
+                3,
+                4
+            ],
+            "components": [],
+            "properties": {}
+        },
+        {
+            "name": "Turbine-CENTRAL",
+            "transform": {
+                "position": [
+                    0,
+                    0,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    1.5707963267948966,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "children": [
+                5,
+                8
+            ],
+            "components": [
+                {
+                    "type": "ModelRef",
+                    "uri": "${bucket}/orangeTurbineDemoModel.glb",
+                    "modelType": "GLB"
+                },
+                {
+                    "type": "ModelShader",
+                    "valueDataBinding": {
+                        "dataBindingContext": {
+                            "entityId": "",
+                            "componentName": "",
+                            "propertyName": "",
+                            "entityPath": ""
+                        },
+                        "dataFrameLabel": ""
+                    },
+                    "ruleBasedMapId": "temperatureAlarmRule"
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "Turbine-EAST",
+            "transform": {
+                "position": [
+                    50,
+                    0,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    1.5707963267948966,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "children": [
+                6,
+                9
+            ],
+            "components": [
+                {
+                    "type": "ModelRef",
+                    "uri": "${bucket}/orangeTurbineDemoModel.glb",
+                    "modelType": "GLB"
+                },
+                {
+                    "type": "ModelShader",
+                    "valueDataBinding": {
+                        "dataBindingContext": {
+                            "entityId": "",
+                            "componentName": "",
+                            "propertyName": "",
+                            "entityPath": ""
+                        },
+                        "dataFrameLabel": ""
+                    },
+                    "ruleBasedMapId": "temperatureAlarmRule"
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "Turbine-WEST",
+            "transform": {
+                "position": [
+                    -50,
+                    0,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    1.5707963267948966,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "children": [
+                7,
+                10
+            ],
+            "components": [
+                {
+                    "type": "ModelRef",
+                    "uri": "${bucket}/orangeTurbineDemoModel.glb",
+                    "modelType": "GLB"
+                },
+                {
+                    "type": "ModelShader",
+                    "valueDataBinding": {
+                        "dataBindingContext": {
+                            "entityId": "",
+                            "componentName": "",
+                            "propertyName": "",
+                            "entityPath": ""
+                        },
+                        "dataFrameLabel": ""
+                    },
+                    "ruleBasedMapId": "temperatureAlarmRule"
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "rpmIndicator",
+            "transform": {
+                "position": [
+                    3.7523040302894195,
+                    42.65793944038399,
+                    3.3758642548433584
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    1.5707963267948966
+                ],
+                "scale": [
+                    4,
+                    2,
+                    4
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "MotionIndicator",
+                    "shape": "CircularCylinder",
+                    "valueDataBindings": {
+                        "speed": {
+                            "valueDataBinding": {
+                                "dataBindingContext": {
+                                    "entityId": "",
+                                    "componentName": "",
+                                    "propertyName": "",
+                                    "entityPath": ""
+                                },
+                                "dataFrameLabel": ""
+                            },
+                            "ruleBasedMapId": "rpmMotionRule"
+                        }
+                    },
+                    "config": {
+                        "numOfRepeatInY": 1,
+                        "backgroundColorOpacity": 0.2,
+                        "defaultBackgroundColor": "#f54f23"
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "rpmIndicator",
+            "transform": {
+                "position": [
+                    3.752,
+                    42.658,
+                    3.376
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    1.5707963267948966
+                ],
+                "scale": [
+                    4,
+                    2,
+                    4
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "MotionIndicator",
+                    "shape": "CircularCylinder",
+                    "valueDataBindings": {
+                        "speed": {
+                            "valueDataBinding": {
+                                "dataBindingContext": {
+                                    "entityId": "",
+                                    "componentName": "",
+                                    "propertyName": "",
+                                    "entityPath": ""
+                                },
+                                "dataFrameLabel": ""
+                            },
+                            "ruleBasedMapId": "rpmMotionRule"
+                        }
+                    },
+                    "config": {
+                        "numOfRepeatInY": 1,
+                        "backgroundColorOpacity": 0.2,
+                        "defaultBackgroundColor": "#f5a623"
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "rpmIndicator",
+            "transform": {
+                "position": [
+                    3.752,
+                    42.658,
+                    3.376
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    1.5707963267948966
+                ],
+                "scale": [
+                    4,
+                    2,
+                    4
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "MotionIndicator",
+                    "shape": "CircularCylinder",
+                    "valueDataBindings": {
+                        "speed": {
+                            "valueDataBinding": {
+                                "dataBindingContext": {
+                                    "entityId": "",
+                                    "componentName": "",
+                                    "propertyName": "",
+                                    "entityPath": ""
+                                },
+                                "dataFrameLabel": ""
+                            },
+                            "ruleBasedMapId": "rpmMotionRule"
+                        }
+                    },
+                    "config": {
+                        "numOfRepeatInY": 1,
+                        "backgroundColorOpacity": 0.2,
+                        "defaultBackgroundColor": "#f5a623"
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "vibrationIndicator",
+            "transform": {
+                "position": [
+                    5,
+                    45,
+                    -2
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    4,
+                    4,
+                    4
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "Tag",
+                    "icon": "iottwinmaker.common.icon:Info",
+                    "ruleBasedMapId": "vibrationAlarmRule",
+                    "valueDataBinding": {
+                        "dataBindingContext": {
+                            "entityId": "",
+                            "componentName": "",
+                            "propertyName": "",
+                            "entityPath": ""
+                        }
+                    },
+                    "navLink": {
+                        "destination": "https://www.nrel.gov/docs/fy13osti/57403.pdf"
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "vibrationIndicator",
+            "transform": {
+                "position": [
+                    5,
+                    45,
+                    -2
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    4,
+                    4,
+                    4
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "Tag",
+                    "icon": "iottwinmaker.common.icon:Info",
+                    "ruleBasedMapId": "vibrationAlarmRule",
+                    "valueDataBinding": {
+                        "dataBindingContext": {
+                            "entityId": "",
+                            "componentName": "",
+                            "propertyName": "",
+                            "entityPath": ""
+                        }
+                    },
+                    "navLink": {
+                        "destination": "https://www.nrel.gov/docs/fy13osti/57403.pdf"
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "vibrationIndicator",
+            "transform": {
+                "position": [
+                    5,
+                    45,
+                    -2
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    4,
+                    4,
+                    4
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "Tag",
+                    "icon": "iottwinmaker.common.icon:Info",
+                    "ruleBasedMapId": "vibrationAlarmRule",
+                    "valueDataBinding": {
+                        "dataBindingContext": {
+                            "entityId": "",
+                            "componentName": "",
+                            "propertyName": "",
+                            "entityPath": ""
+                        }
+                    },
+                    "navLink": {
+                        "params": {
+                            "": ""
+                        },
+                        "destination": "https://www.nrel.gov/docs/fy13osti/57403.pdf"
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "HemisphereLight",
+            "transform": {
+                "position": [
+                    0,
+                    0,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "Light",
+                    "lightType": "Hemisphere",
+                    "lightSettings": {
+                        "color": 12827322,
+                        "groundColor": 5920599,
+                        "intensity": 1
+                    }
+                }
+            ],
+            "properties": {}
+        }
+    ],
+    "rootNodeIndexes": [
+        0
+    ],
+    "cameras": [],
+    "rules": {
+        "sampleAlarmIconRule": {
+            "statements": [
+                {
+                    "expression": "alarm_status == 'ACTIVE'",
+                    "target": "iottwinmaker.common.icon:Error"
+                },
+                {
+                    "expression": "alarm_status == 'ACKNOWLEDGED'",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "alarm_status == 'SNOOZE_DISABLED'",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "alarm_status == 'NORMAL'",
+                    "target": "iottwinmaker.common.icon:Info"
+                }
+            ]
+        },
+        "sampleTimeSeriesIconRule": {
+            "statements": [
+                {
+                    "expression": "temperature >= 40",
+                    "target": "iottwinmaker.common.icon:Error"
+                },
+                {
+                    "expression": "temperature >= 20",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "temperature < 20",
+                    "target": "iottwinmaker.common.icon:Info"
+                }
+            ]
+        },
+        "sampleTimeSeriesColorRule": {
+            "statements": [
+                {
+                    "expression": "temperature >= 40",
+                    "target": "iottwinmaker.common.color:#FF0000"
+                },
+                {
+                    "expression": "temperature >= 20",
+                    "target": "iottwinmaker.common.color:#FFFF00"
+                },
+                {
+                    "expression": "temperature < 20",
+                    "target": "iottwinmaker.common.color:#00FF00"
+                }
+            ]
+        },
+        "ShowCloseView": {
+            "statements": []
+        },
+        "vibrationAlarmRule": {
+            "statements": [
+                {
+                    "expression": "vibration >= 10",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "vibration >= 15",
+                    "target": "iottwinmaker.common.icon:Error"
+                }
+            ]
+        },
+        "temperatureAlarmRule": {
+            "statements": [
+                {
+                    "expression": "temp > 80",
+                    "target": "iottwinmaker.common.color:#d4b90f"
+                },
+                {
+                    "expression": "temp > 92",
+                    "target": "iottwinmaker.common.color:#d15a12"
+                },
+                {
+                    "expression": "temp > 93",
+                    "target": "iottwinmaker.common.color:#d13212"
+                }
+            ]
+        },
+        "rpmMotionRule": {
+            "statements": [
+                {
+                    "expression": "rpm",
+                    "target": "iottwinmaker.common.number"
+                }
+            ]
+        }
+    }
+}

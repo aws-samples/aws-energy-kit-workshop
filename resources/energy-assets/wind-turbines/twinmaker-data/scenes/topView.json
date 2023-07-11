@@ -1,0 +1,325 @@
+{
+    "specVersion": "1.0",
+    "version": "1",
+    "unit": "meters",
+    "properties": {},
+    "nodes": [
+        {
+            "name": "NacelleView",
+            "transform": {
+                "position": [
+                    0,
+                    0,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "children": [
+                1,
+                2,
+                3,
+                4
+            ],
+            "components": [
+                {
+                    "type": "ModelRef",
+                    "uri": "${bucket}/orangeTurbineTopView.glb",
+                    "modelType": "GLB"
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "Vibration Threshold Warning",
+            "transform": {
+                "position": [
+                    -0.5322109621644002,
+                    43.87412369216495,
+                    3.3313083879993073
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    4,
+                    4,
+                    4
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "Tag",
+                    "icon": "iottwinmaker.common.icon:Info",
+                    "ruleBasedMapId": "vibrationAlarmRule",
+                    "valueDataBinding": {
+                        "dataBindingContext": {
+                            "entityId": "",
+                            "componentName": "",
+                            "propertyName": "",
+                            "entityPath": ""
+                        },
+                        "dataFrameLabel": ""
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "Temperature Threshold Error",
+            "transform": {
+                "position": [
+                    -7.704189692779964,
+                    44.2003828309715,
+                    3.273800034416326
+                ],
+                "rotation": [
+                    0,
+                    1.5707963267948966,
+                    0
+                ],
+                "scale": [
+                    4,
+                    4,
+                    4
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "Tag",
+                    "icon": "iottwinmaker.common.icon:Info",
+                    "ruleBasedMapId": "tempAlarmRule",
+                    "valueDataBinding": {
+                        "dataBindingContext": {
+                            "entityId": "",
+                            "componentName": "",
+                            "propertyName": "",
+                            "entityPath": ""
+                        },
+                        "dataFrameLabel": ""
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "TurbineSchematic",
+            "transform": {
+                "position": [
+                    -5.767721049996146,
+                    44.56572348035498,
+                    3.4922690485324113
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "Tag",
+                    "icon": "iottwinmaker.common.icon:Info",
+                    "valueDataBinding": {
+                        "dataBindingContext": {
+                            "entityId": "",
+                            "componentName": "",
+                            "propertyName": "",
+                            "entityPath": ""
+                        }
+                    },
+                    "navLink": {
+                        "params": {}
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "MotionIndicator",
+            "transform": {
+                "position": [
+                    2.944502453158675,
+                    42.710788478836925,
+                    3.245717862399269
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    1.5707963267948966
+                ],
+                "scale": [
+                    4,
+                    4,
+                    4
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "MotionIndicator",
+                    "shape": "CircularCylinder",
+                    "valueDataBindings": {
+                        "foregroundColor": {},
+                        "speed": {
+                            "valueDataBinding": {
+                                "dataBindingContext": {
+                                    "entityId": "",
+                                    "componentName": "",
+                                    "propertyName": "",
+                                    "entityPath": ""
+                                },
+                                "dataFrameLabel": ""
+                            },
+                            "ruleBasedMapId": "rpmIndicatorRule"
+                        }
+                    },
+                    "config": {
+                        "numOfRepeatInY": 1,
+                        "backgroundColorOpacity": 1,
+                        "defaultForegroundColor": "#3612ec"
+                    }
+                }
+            ],
+            "properties": {}
+        },
+        {
+            "name": "Light",
+            "transform": {
+                "position": [
+                    0,
+                    0,
+                    0
+                ],
+                "rotation": [
+                    0,
+                    0,
+                    0
+                ],
+                "scale": [
+                    1,
+                    1,
+                    1
+                ]
+            },
+            "transformConstraint": {},
+            "components": [
+                {
+                    "type": "Light",
+                    "lightType": "Hemisphere",
+                    "lightSettings": {
+                        "color": 14737118,
+                        "groundColor": 3355443,
+                        "intensity": 1
+                    }
+                }
+            ],
+            "properties": {}
+        }
+    ],
+    "rootNodeIndexes": [
+        0,
+        5
+    ],
+    "cameras": [],
+    "rules": {
+        "sampleAlarmIconRule": {
+            "statements": [
+                {
+                    "expression": "alarm_status == 'ACTIVE'",
+                    "target": "iottwinmaker.common.icon:Error"
+                },
+                {
+                    "expression": "alarm_status == 'ACKNOWLEDGED'",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "alarm_status == 'SNOOZE_DISABLED'",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "alarm_status == 'NORMAL'",
+                    "target": "iottwinmaker.common.icon:Info"
+                }
+            ]
+        },
+        "sampleTimeSeriesIconRule": {
+            "statements": [
+                {
+                    "expression": "temperature >= 40",
+                    "target": "iottwinmaker.common.icon:Error"
+                },
+                {
+                    "expression": "temperature >= 20",
+                    "target": "iottwinmaker.common.icon:Warning"
+                },
+                {
+                    "expression": "temperature < 20",
+                    "target": "iottwinmaker.common.icon:Info"
+                }
+            ]
+        },
+        "sampleTimeSeriesColorRule": {
+            "statements": [
+                {
+                    "expression": "temperature >= 40",
+                    "target": "iottwinmaker.common.color:#FF0000"
+                },
+                {
+                    "expression": "temperature >= 20",
+                    "target": "iottwinmaker.common.color:#FFFF00"
+                },
+                {
+                    "expression": "temperature < 20",
+                    "target": "iottwinmaker.common.color:#00FF00"
+                }
+            ]
+        },
+        "ShowDocument": {
+            "statements": []
+        },
+        "rpmIndicatorRule": {
+            "statements": [
+                {
+                    "expression": "rpm",
+                    "target": "iottwinmaker.common.number"
+                }
+            ]
+        },
+        "vibrationAlarmRule": {
+            "statements": [
+                {
+                    "expression": "vibration > 15",
+                    "target": "iottwinmaker.common.icon:Warning"
+                }
+            ]
+        },
+        "tempAlarmRule": {
+            "statements": [
+                {
+                    "expression": "temp > 95",
+                    "target": "iottwinmaker.common.icon:Warning"
+                }
+            ]
+        }
+    }
+}
