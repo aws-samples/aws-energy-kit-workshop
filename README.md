@@ -4,7 +4,7 @@ This AWS Cloud Development Kit (CDK) application deploys a demo and workshop env
 
 ## 🛠 What you will build
 
-![IoT EnergyKit Architectural Diagram](../resources/architecture/reference_architecture.png)
+![IoT EnergyKit Architectural Diagram](./resources/architecture/reference_architecture.png)
 Figure 1: Solution Architecture Diagram
 
 As shown in Figure 1: Solution Architecture Diagram, this guidance with sample code sets up the following application stacks
