@@ -34,7 +34,7 @@ This sample doesn’t require any software license or AWS Marketplace subscripti
 
 The shared resource stack deploys all cross-stack referenced resources such as S3 buckets and lambda functions that are built as dependencies.
 
-Review the [Shared Resources Stack](stacks/stack-shared-resources/stack-shared-resources.ts) and [Stack Outputs](#shared-resources-stack-outputs)
+Review the [Shared Resources Stack](./lib/stacks/stack-shared-resources/stack-shared-resources.ts) and [Stack Outputs](#shared-resources-stack-outputs)
 
 ### IoT Stack
 
