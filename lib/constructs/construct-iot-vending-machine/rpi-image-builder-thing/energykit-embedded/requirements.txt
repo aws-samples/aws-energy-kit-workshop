@@ -44,6 +44,6 @@ ssh-import-id==5.10
 sysv-ipc==1.1.0
 toml==0.10.1
 typing-extensions==4.5.0
-urllib3==1.26.5
+urllib3==1.26.17
 v4l2-python3==0.3.2
 
