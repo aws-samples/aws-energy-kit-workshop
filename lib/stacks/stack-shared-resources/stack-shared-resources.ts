@@ -28,6 +28,8 @@ export class SharedResourcesStack extends Stack {
       //bucketName: "energykit-data-lake"
     })
 
+    this.dataLake = bucket;
+
     this.timestreamTable = new TimeStream(this, 'TimestreamTable')
 
     this.iotVendingTopic = new sns.Topic(this, 'sns-topic', {
