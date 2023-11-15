@@ -64,7 +64,7 @@ export class IotStack extends Stack {
 
     const workshopOption = this.node.tryGetContext('workshopOption')
 
-    if (workshopOption === "false") {
+    if (workshopOption === false) {
       // IoT Core Deployment
       const iotCoreDeployment = new IotCoreConstruct(this, 'IotCoreDeployment', {
         assetModel: props.assetModel,
