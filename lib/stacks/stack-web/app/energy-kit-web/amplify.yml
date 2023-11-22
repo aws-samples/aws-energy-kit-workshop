@@ -13,6 +13,10 @@ frontend:
         - echo "VITE_IOT_SUB_TOPIC=$IOT_SUB_TOPIC" >> .env
         - echo "VITE_IOT_PUB_TOPIC=$IOT_PUB_TOPIC" >> .env
         - echo "VITE_IOT_ENDPOINT=$IOT_ENDPOINT" >> .env
+        - echo "VITE_PUB_SUB_POLICY_NAME=$PUB_SUB_POLICY_NAME" >> .env
+        - echo "VITE_TELEMETRY_LIST_LENGTH=$TELEMETRY_LIST_LENGTH" >> .env
+        - echo "VITE_AMPLIFY_APP_ID=$AWS_APP_ID" >> .env
+        - echo "VITE_AMPLIFY_REPO_NAME=$AMPLIFY_REPO_NAME" >> .env
         - echo "Printing environmental variables to the console to ensure they are correct"
         - cat .env
         - npm run build

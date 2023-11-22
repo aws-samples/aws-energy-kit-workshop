@@ -38,14 +38,15 @@ export interface AmplifyPubSubProps extends StackProps {
 }
 
 export class AmplifyPubSub extends Construct {
-  public readonly policyName: any
+  public readonly policyName: string
 
   constructor(scope: Construct, id: string, props: AmplifyPubSubProps) {
     super(scope, id)
+    this.policyName = 'AmplifyPubSubPolicy'
 
     // Create iot policy
     const amplifyPubSubPolicy = new iot.CfnPolicy(this, 'Policy', {
-      policyName: 'AmplifyPubSubPolicy',
+      policyName: this.policyName,
       policyDocument: {
         Version: '2012-10-17',
         Statement: [

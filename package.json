@@ -45,6 +45,7 @@
     "@aws-cdk/aws-cognito-identitypool-alpha": "^2.21.1-alpha.0",
     "@aws-cdk/aws-iot-actions-alpha": "^2.44.0-alpha.0",
     "@aws-cdk/aws-iot-alpha": "^2.44.0-alpha.0",
+    "@aws-cdk/aws-iotevents-alpha": "^2.110.1-alpha.0",
     "@aws-sdk/client-greengrassv2": "^3.369.0",
     "@aws-sdk/client-iot": "^3.369.0",
     "@aws-sdk/client-ssm": "^3.369.0",
