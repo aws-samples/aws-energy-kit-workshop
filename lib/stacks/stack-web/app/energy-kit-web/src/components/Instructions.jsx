@@ -1,33 +1,40 @@
 import PropTypes from "prop-types";
 
+const styles = {
+  instructionHeading: { marginTop: "16px", marginBottom: "3px" },
+  instructionBodyText: { marginBottom: "12px" },
+};
+
 const Instructions = ({ region, amplifyAppId, amplifyRepoName }) => {
   return (
     <>
-      <b>Instructions and Next Steps</b>
-      <p>
-        This web app was built using{" "}
-        <a
-          href={`https://${region}.console.aws.amazon.com/amplify/home?region=${region}#/${amplifyAppId}`}
-        >
-          AWS Amplify
-        </a>{" "}
+      <div style={styles.instructionHeading}>
+        <b>Instructions and Next Steps</b>
+      </div>
+      <div style={styles.instructionBodyText}>
+        This web app was built using
+        {" "}
+        <a href={`https://${region}.console.aws.amazon.com/amplify/home?region=${region}#/${amplifyAppId}`}>AWS Amplify</a>
+        {" "}
         which is a complete solution that lets frontend web and mobile
         developers easily build, ship, and host full-stack applications on AWS.
         No cloud expertise needed.
-        <br></br>
+        </div>
+        <div style={styles.instructionBodyText}>
         The app allows you to send control messages to the WindRacer model
         turbines (above), and to view the telemetry messages the turbines are
         sending (right).
-        <br></br>
-        <br></br>
+        </div>
+        <div style={styles.instructionBodyText}>
         To troubleshoot sending and receiving messages, use the{" "}
         <a
           href={`https://${region}.console.aws.amazon.com/iot/home?region=${region}#/test`}
         >
           MQTT Test Client
         </a>
-        .<br></br>
-        <br></br>
+        .
+        </div>
+        <div style={styles.instructionBodyText}>
         The code for this app is stored in this{" "}
         <a
           href={`https://${region}.console.aws.amazon.com/codesuite/codecommit/repositories/${amplifyRepoName}/browse?region=${region}`}
@@ -35,7 +42,12 @@ const Instructions = ({ region, amplifyAppId, amplifyRepoName }) => {
           AWS CodeCommit repository
         </a>
         .
-      </p>
+        <br></br>
+        <br></br>
+        <br></br>
+        <br></br>
+        Note: This web app is best viewed full screen in 1080p.
+      </div>
     </>
   );
 };

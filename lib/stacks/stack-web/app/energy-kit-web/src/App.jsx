@@ -54,7 +54,7 @@ const App = ({ signOut, user }) => {
         wrap="wrap"
         style={styles.topFlex}
       >
-        <View width="24rem" style={styles.headingView}>
+        <View width="21rem" style={styles.headingView}>
           <Heading level={4} style={{ color: "white" }}>
             {" "}
             WindRacer Control Panel{" "}

@@ -5,7 +5,7 @@ import Instructions from "./Instructions";
 import Messages from "./Messages";
 
 const styles = {
-  controlsAndInstructionsView: { marginTop: 1, padding: 20, flexGrow: 1 },
+  controlsAndInstructionsView: { marginTop: 1, padding: 10, flexGrow: 1 },
 };
 
 const ControlPanel = ({ exports }) => {

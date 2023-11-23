@@ -5,7 +5,9 @@ import { Button } from "@aws-amplify/ui-react";
 import toast from "react-hot-toast";
 
 const styles = {
+  instructionText: { marginBottom: "18px" },
   turbineControlButton: { fontWeight: "normal", width: "130px" },
+  turbineControlButtonDiv: { marginBottom: "20px" },
 };
 
 const Publish = ({ commandTopic }) => {
@@ -32,9 +34,9 @@ const Publish = ({ commandTopic }) => {
 
   return (
     <>
-      <b>Control the WindRacer model turbines</b>
-      <p>Send message to topic &apos;{commandTopic}&apos;:</p>
-      <p>
+      <b>Control the WindRacer turbines</b>
+      <div style={styles.instructionText}>Send message to topic &apos;{commandTopic}&apos;:</div>
+      <div align="center" style={styles.turbineControlButtonDiv}>
         <Button
           variation="primary"
           colorTheme="success"
@@ -52,7 +54,7 @@ const Publish = ({ commandTopic }) => {
         >
           Simulate = 0
         </Button>
-      </p>
+      </div>
     </>
   );
 };

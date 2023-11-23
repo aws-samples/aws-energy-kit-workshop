@@ -7,8 +7,9 @@ const styles = {
   telemetryMessageView: {
     backgroundColor: " #EEEEEE",
     marginTop: 1,
+    marginBottom: 5,
     marginLeft: 1,
-    padding: 20,
+    padding: 10,
     flexGrow: 6,
   },
   telemetryMessageCard: {
