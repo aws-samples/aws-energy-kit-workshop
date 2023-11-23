@@ -309,7 +309,6 @@ celerybeat.pid
 *.sage.py
 
 # Environments
-.env
 .venv
 env/
 venv/
@@ -420,3 +419,4 @@ cdk.context.json
 !/constructs/construct-iot-vending-machine/rpi-image-builder-thing/*/**
 
 cdk.context.json
+lib/stacks/stack-web/app/energy-kit-web/.env
