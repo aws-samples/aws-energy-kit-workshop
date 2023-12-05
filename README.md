@@ -46,7 +46,7 @@ The Simulator Stack deploys an auto-scaling group of EC2 instances configured wi
 
 ### Web Stack
 
-The Web Stack deploys an AWS Amplify Web Application with integrated cognito user pool.
+The Web Stack deploys an AWS Amplify Web Application with integrated cognito user pool.  The web application features buttons to control the turbines, and displays the telemetry messages as they are sent from the turbines.  It is designed to display on a 1080p display, but will adapt to a mobile phone screen for maximum flexibility when using WindRacer as a demo.
 
 ## 🚀 How to Deploy
 
@@ -167,7 +167,7 @@ cdk deploy --all
 
 ### 7/ Optional: Set up the Amplify Web Application
 
-If you are reading this it is because you deployed the EnergyKit Web Application by setting `deployWebStack: true` in the `cdk.context.json` file. Your application is already up and running in the AWS Cloud and there are a few simple steps to begin working with and editing your application.
+If you are reading this it is because you deployed the EnergyKit Web Application by setting `deployWebStack: true` in the `cdk.context.json` file. The application is already up and running in the AWS Cloud and there are a few simple steps to begin working with it.
 
 1. Visit the AWS Amplify Console by navigating to the AWS Console and searching for Amplify. Make sure you are in the same region that you just selected to deploy your application.
 2. Visit your live web application --> click on the link in the Amplify console
@@ -179,7 +179,7 @@ If you are reading this it is because you deployed the EnergyKit Web Application
    **_NOTE: The sign-up functionality is disabled intentionally to help secure your application. You may change this and add the UI elements back, or manually add the necessary users in the cognito console while following the principle of least privilege (recommended)._**
 
 3. Learn more about working with [AWS Amplify CLI](https://docs.amplify.aws/cli/) or the [AWS Amplify Console](https://docs.amplify.aws/start/q/integration/js/).
-4. Make the web application your own and let us know what you choose do to with it.
+4. Feel free to make the web application your own and let us know what you choose do to with it.
 
 Success! At this point, you should successfully have the Amplify app working.
 
