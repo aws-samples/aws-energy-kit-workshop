@@ -12,9 +12,12 @@ const Instructions = ({ region, amplifyAppId, amplifyRepoName }) => {
         <b>Instructions and Next Steps</b>
       </div>
       <div style={styles.instructionBodyText}>
-        This web app was built using
-        {" "}
-        <a href={`https://${region}.console.aws.amazon.com/amplify/home?region=${region}#/${amplifyAppId}`}>AWS Amplify</a>
+        This web app was built using{" "}
+        <a
+          href={`https://${region}.console.aws.amazon.com/amplify/home?region=${region}#/${amplifyAppId}`}
+        >
+          AWS Amplify
+        </a>
         {" "}
         which is a complete solution that lets frontend web and mobile
         developers easily build, ship, and host full-stack applications on AWS.
@@ -42,11 +45,6 @@ const Instructions = ({ region, amplifyAppId, amplifyRepoName }) => {
           AWS CodeCommit repository
         </a>
         .
-        <br></br>
-        <br></br>
-        <br></br>
-        <br></br>
-        Note: This web app is best viewed full screen in 1080p.
       </div>
     </>
   );
