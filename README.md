@@ -105,7 +105,15 @@ Before deployment navigate to `cdk.context.json` and update the required context
 - Required: `nagEnabled` Enables cdk_nag audit tool. Default is `true`.
 - Required: `APP_ENV` Sets the application environment to `DEV` or `PROD`. DEV includes ephemeral resources that will default to destroy on delete. PROD preserves all data stores even on delete to prevent accidental data destruction. Default is `DEV`.
 
-### 3/ Bootstrap CDK
+### 3/ Install dependencies, Bootstrap CDK, build, and synthesize the CDK app
+
+#### a/ Install dependencies
+
+```sh
+npm ci
+```
+
+#### b/ Bootstrap CDK
 
 At this point you should have already saved your AWS credentials to environmental variables using `aws configure` or a similar command. The bootstrap step sets up several dependencies for CDK that will allow you to create resources using the CDK command line interface. Please also note that you will need a generally permissive IAM role to bootstrap CDK. This can be done using an AWS managed developer role, but we strongly recommend consulting your security practices to ensure that you adhere to least privilege.
 
@@ -119,21 +127,13 @@ or
 cdk bootstrap aws://ACCOUNT-NUMBER/REGION # if you are bootstrapping a different account
 ```
 
-### 3/ Install dependencies, build, and synthesize the CDK app
-
-Install dependencies
-
-```sh
-npm ci
-```
-
-Build your node application and environment
+#### c/ Build your node application and environment
 
 ```sh
 npm run build
 ```
 
-Synthesize the CDK application
+#### d/ Synthesize the CDK application
 
 ```sh
 cdk synth
