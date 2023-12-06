@@ -178,8 +178,9 @@ If you are reading this it is because you deployed the EnergyKit Web Application
 
    **_NOTE: The sign-up functionality is disabled intentionally to help secure your application. You may change this and add the UI elements back, or manually add the necessary users in the cognito console while following the principle of least privilege (recommended)._**
 
-3. Learn more about working with [AWS Amplify CLI](https://docs.amplify.aws/cli/) or the [AWS Amplify Console](https://docs.amplify.aws/start/q/integration/js/).
-4. Feel free to make the web application your own and let us know what you choose do to with it.
+3. For presenting, the web app is best viewed at 1920x1080 resoluion (1080p), using a scaling factor of 150% to make the text easier to view from a distance.
+4. Learn more about working with [AWS Amplify CLI](https://docs.amplify.aws/cli/) or the [AWS Amplify Console](https://docs.amplify.aws/start/q/integration/js/).
+5. Feel free to make the web application your own and let us know what you choose do to with it.
 
 Success! At this point, you should successfully have the Amplify app working.
 
