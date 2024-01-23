@@ -7,10 +7,12 @@ import * as path from 'path';
 import { AmplifyDeploy } from "../../constructs/construct-amplify-deploy/construct-amplify-deploy";
 import { CognitoAuth } from "../../constructs/construct-cognito-auth/construct-cognito-auth";
 import { AmplifyPubSub } from "../../constructs/construct-amplify-pubsub/construct-amplify-pubsub";
+import { IotStack } from "../stack-iot/stack-iot";
 
 interface WebStackProps extends cdk.StackProps {
   adminEmail: string,
-  cognito: CognitoAuth
+  cognito: CognitoAuth,
+  iot: IotStack,
 }
 
 export class WebStack extends cdk.Stack {
@@ -21,6 +23,7 @@ export class WebStack extends cdk.Stack {
     super(scope, id, props);
 
     const cognito = props.cognito
+    const iot = props.iot
 
     const amplifyPubSub = new AmplifyPubSub(this, "AmplifyPubSub", {
       adminEmail: props.adminEmail,
@@ -30,19 +33,24 @@ export class WebStack extends cdk.Stack {
     });
     
     amplifyPubSub.node.addDependency(cognito)
+    const amplifyRepoName = 'EnergyKitWebApp';
 
+    
     this.amplifyDeployment = new AmplifyDeploy(this, 'AmplifyDeployment', {
       appPath: path.join(__dirname, './app/energy-kit-web'),
-      repoName: 'EnergyKitWebApp',
+      repoName: amplifyRepoName,
       region: this.region,
       envVariables: {
         'REGION': this.region,
         'IDENTITY_POOL_ID': cognito.identityPoolIdOutputIdTransfer,
         'USER_POOL_ID': cognito.userPoolIdOutputTransfer,
         'USER_POOL_WEB_CLIENT_ID': cognito.userPoolClientIdOutputTransfer,
-        "IOT_SUB_TOPIC": "dummy",
-        "IOT_PUB_TOPIC": "dummy",
-        "IOT_ENDPOINT": "dummy",
+        "IOT_SUB_TOPIC": iot.subTopic,
+        "IOT_PUB_TOPIC": iot.pubTopic,
+        "IOT_ENDPOINT": iot.iotEndpoint,
+        "PUB_SUB_POLICY_NAME": amplifyPubSub.policyName,
+        "AMPLIFY_REPO_NAME": amplifyRepoName,
+        "TELEMETRY_LIST_LENGTH": "10",
       }
     });
 

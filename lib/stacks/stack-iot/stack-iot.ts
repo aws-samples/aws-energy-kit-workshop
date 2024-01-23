@@ -73,9 +73,9 @@ export class IotStack extends Stack {
       })
 
       // IoT Thing Deployment
-      ;(this.subTopic = 'props.assetModel.subTopic'),
-        (this.pubTopic = 'props.assetModel.pubTopic'),
-        (this.iotEndpoint = iotCoreDeployment.iotEndpoint)
+      this.subTopic = iotCoreDeployment.subTopic;
+      this.pubTopic = iotCoreDeployment.pubTopic;
+      this.iotEndpoint = iotCoreDeployment.iotEndpoint;
 
       new CfnOutput(this, 'IotEndpoint', {
         value: iotCoreDeployment.iotEndpoint,

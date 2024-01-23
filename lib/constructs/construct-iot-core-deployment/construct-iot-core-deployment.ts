@@ -8,7 +8,6 @@ import * as dynamodb from 'aws-cdk-lib/aws-dynamodb';
 import { telemetryMqttPath, commandMqttPath, sitewiseAliasPrefix, sitewiseAssetAlias} from '../../../resources/energy-assets/wind-turbines/asset-models/turbine-model'
 import { aws_iot as iot } from 'aws-cdk-lib';
 import { aws_iam as iam } from 'aws-cdk-lib';
-import * as iotEvents from '@aws-cdk/aws-iotevents-alpha'
 import * as timestream from 'aws-cdk-lib/aws-timestream';
 import { TimeStream } from '../construct-timestream/construct-timestream';
 import { EkS3 } from '../construct-ek-s3-bucket/construct-ek-s3-bucket';
@@ -21,6 +20,8 @@ export interface IotCoreConstructProps {
 
 export class IotCoreConstruct extends Construct {
   public readonly iotEndpoint: string
+  public readonly pubTopic: string
+  public readonly subTopic: string
 
   constructor(scope: Construct, id: string, props: IotCoreConstructProps) {
     super(scope, id);
@@ -39,6 +40,8 @@ export class IotCoreConstruct extends Construct {
     });
 
     this.iotEndpoint = getIoTEndpoint.getResponseField('endpointAddress')
+    this.subTopic = telemetryMqttPath;
+    this.pubTopic = commandMqttPath;
 
     // Iot Rules
 

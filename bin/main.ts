@@ -90,6 +90,7 @@ if (webOption === true) {
     env: appEnv,
     adminEmail: app.node.tryGetContext('adminEmail'),
     cognito: cognito,
+    iot: iotStack,
   })
 }
 
