@@ -7,7 +7,7 @@
 echo "Welcome to the e2e test. This test deploys the full infrastructure and then performs an e2e test with sample data."
 echo "If the test is successful we will destroy the infrastructure and all of it's contents and clean up the account."
 
-regions=("us-east-1") #list of defined regions to loop through for deployment
+regions=("eu-west-1") #list of defined regions to loop through for deployment
 
 for region in "${regions[@]}"
 do

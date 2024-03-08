@@ -70,7 +70,7 @@ systemctl start greengrass.service
 curl -s https://d2s8p88vqu9w66.cloudfront.net/releases/greengrass-nucleus-latest.zip > greengrass-nucleus-latest.zip && unzip greengrass-nucleus-latest.zip -d GreengrassCore
 
 # run installer and set up device
-sudo -E java -Droot="/greengrass/v2" -Dlog.store=FILE -jar ./GreengrassCore/lib/Greengrass.jar --aws-region us-east-1 --thing-name amazon-scs-test  --component-default-user ggc_user:ggc_group --provision true --setup-system-service true --deploy-dev-tools true
+sudo -E java -Droot="/greengrass/v2" -Dlog.store=FILE -jar ./GreengrassCore/lib/Greengrass.jar --aws-region eu-west-1 --thing-name amazon-scs-test  --component-default-user ggc_user:ggc_group --provision true --setup-system-service true --deploy-dev-tools true
 
 # reboot pi
 /sbin/shutdown -r 1 "reboot in 1 minute"

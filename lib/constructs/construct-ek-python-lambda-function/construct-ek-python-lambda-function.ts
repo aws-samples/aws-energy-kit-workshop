@@ -26,7 +26,7 @@ interface EkLambdaProps {
 
     /**
      * Optional: set lambda runtime to select different python runtime
-     * @default lambda.Runtime.PYTHON_3_9
+     * @default lambda.Runtime.PYTHON_3_12
      */
     readonly runtime: lambda.Runtime;
 

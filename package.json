@@ -11,7 +11,7 @@
     "cdk": "cdk",
     "lint": "eslint . --ext .ts",
     "format": "prettier --ignore-path .gitignore --write \"**/*.+(js|ts|json)\"",
-    "dock": "aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws",
+    "dock": "aws ecr-public get-login-password --region eu-west-1 | docker login --username AWS --password-stdin public.ecr.aws",
     "secure": "sh test-security.sh"
   },
   "devDependencies": {
