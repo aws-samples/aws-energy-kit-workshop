@@ -8,5 +8,5 @@ datasources:
     jsonData:
       assumeRoleArn: REPLACE_WITH_DATASOURCE_ROLE_ARN
       authType: default
-      defaultRegion: us-east-1
+      defaultRegion: eu-west-1
       workspaceId: EKTwinmakerStackTwinMakerEC21B29E

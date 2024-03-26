@@ -27,6 +27,6 @@ private_key_path = match_filename(
     "*.pem.key", "/etc/energykit-embedded/certs")
 root_ca_path = match_filename(
     "*.pem", "/etc/energykit-embedded/certs")
-region = "us-east-1"
+region = "eu-west-1"
 
 

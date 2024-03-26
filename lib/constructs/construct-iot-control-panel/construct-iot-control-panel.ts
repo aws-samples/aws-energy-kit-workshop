@@ -38,7 +38,7 @@ export class IotControlPanel extends Construct {
 
     // Lambda that configures the rpi-image-builder and stores it in the pipeline source bucket
     const simulateTurbinesAnomalyFunction = new lambda.Function(this, 'simulateTurbinesAnomalyFunction', {
-      runtime: lambda.Runtime.PYTHON_3_7,
+      runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.on_event',
       code: lambda.Code.fromAsset(path.join(__dirname, './lambda/simulate_turbines_anomaly')),
       timeout: Duration.seconds(60),
@@ -57,7 +57,7 @@ export class IotControlPanel extends Construct {
     });
 
     const simulateTurbinesNormalFunction = new lambda.Function(this, 'simulateTurbinesNormalFunction', {
-      runtime: lambda.Runtime.PYTHON_3_7,
+      runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.on_event',
       code: lambda.Code.fromAsset(path.join(__dirname, './lambda/simulate_turbines_normal')),
       timeout: Duration.seconds(60),
@@ -76,7 +76,7 @@ export class IotControlPanel extends Construct {
     });
 
     const stopTurbinesFunction = new lambda.Function(this, 'stopTurbinesFunction', {
-      runtime: lambda.Runtime.PYTHON_3_7,
+      runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.on_event',
       code: lambda.Code.fromAsset(path.join(__dirname, './lambda/stop_turbines')),
       timeout: Duration.seconds(60),
@@ -95,7 +95,7 @@ export class IotControlPanel extends Construct {
     });
 
     const sendMqttFunction = new lambda.Function(this, 'sendMqttFunction', {
-      runtime: lambda.Runtime.PYTHON_3_7,
+      runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.on_event',
       code: lambda.Code.fromAsset(path.join(__dirname, './lambda/send_mqtt')),
       timeout: Duration.seconds(60),

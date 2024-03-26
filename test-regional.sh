@@ -9,7 +9,7 @@
 # it accepts a list of regions for test deployment and loops through each region and deploys all cdk infrastructure
 # the publish step uses `cdk deploy --all` but this command can be edited to reflect a different stack by editing line 
 
-regions=("us-east-1" "us-east-2" "us-west-2") #list of defined regions to loop through for deployment
+regions=("eu-west-1" "us-east-2" "us-west-2") #list of defined regions to loop through for deployment
 
 declare –a success=() #sets an empty list to record successful deployments
 

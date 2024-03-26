@@ -111,7 +111,7 @@ Your wifi network will need to match what you have provided in your build script
 
 - Check that the IoT Things are connecting in the IoT Core Console Page
 - Check that the turbines are sending MQTT data to IoT Core with the MQTT Test Client
-        1. [Visit MQTT Test Client](https://us-east-1.console.aws.amazon.com/iot/home?region=us-east-1#/test) in your region
+        1. [Visit MQTT Test Client](https://eu-west-1.console.aws.amazon.com/iot/home?region=eu-west-1#/test) in your region
         2. Subscribe to `energykit/wind/telemetry/+`
         3. You will see data coming in from the simulator, but you should also see data coming in from the physical turbines. They each have unique thing-names that do not include “simulator” in the title. You will also see the same thingnames on your wifi network if you look in the GLInet console
         4. If you do not see data coming from these turbines

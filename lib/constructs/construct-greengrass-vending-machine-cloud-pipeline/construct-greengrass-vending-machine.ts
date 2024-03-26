@@ -73,7 +73,7 @@ export class GreengrassVendingMachine extends Construct {
 
     // Lambda that configures the rpi-image-builder and stores it in the pipeline source bucket
     const configureRpiImageBuilderFunction = new lambda.Function(this, 'ConfigureRpiImageBuilderFunction', {
-      runtime: lambda.Runtime.PYTHON_3_7,
+      runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.on_event',
       code: lambda.Code.fromAsset(path.join(__dirname, './lambda/configure_rpi_image_builder')),
       timeout: Duration.seconds(60),
@@ -92,7 +92,7 @@ export class GreengrassVendingMachine extends Construct {
 
     // Lambda that configures the rpi-image-builder and stores it in the pipeline source bucket
     const preProvisionHooksFunction = new lambda.Function(this, 'PreProvisionHooksFunction', {
-      runtime: lambda.Runtime.PYTHON_3_7,
+      runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.on_event',
       code: lambda.Code.fromAsset(path.join(__dirname, './lambda/pre_provision_hooks')),
       timeout: Duration.seconds(60),
@@ -287,6 +287,9 @@ export class GreengrassVendingMachine extends Construct {
               // Install dependencies required by the build-rpi-image.bash script
               'apt-get update',
               'apt-get -y install p7zip-full wget libxml2-utils kpartx',
+              'wget -qO - https://dl.google.com/linux/linux_signing_key.pub | sudo apt-key add -',
+              'echo \"### THIS FILE IS AUTOMATICALLY CONFIGURED ###\n# You may comment out this entry, but any other modifications may be lost.\ndeb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main\" | sudo tee -a /etc/apt/sources.list.d/google-linux.list',
+              'sudo apt update'
             ],
           },
           build: {

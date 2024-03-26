@@ -135,7 +135,7 @@ export class IotVendingMachine extends Construct {
 
     // Lambda that configures the rpi-image-builder and stores it in the pipeline source bucket
     const configureRpiImageBuilderFunction = new lambda.Function(this, 'ConfigureRpiImageBuilderFunction', {
-      runtime: lambda.Runtime.PYTHON_3_7,
+      runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.on_event',
       code: lambda.Code.fromAsset(path.join(__dirname, './lambda/configure_rpi_image_builder')),
       timeout: Duration.seconds(60),
@@ -154,7 +154,7 @@ export class IotVendingMachine extends Construct {
 
     // Lambda that configures the rpi-image-builder and stores it in the pipeline source bucket
     const postProvisionHooksFunction = new lambda.Function(this, 'PostProvisionHooksFunction', {
-      runtime: lambda.Runtime.PYTHON_3_7,
+      runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.on_event',
       code: lambda.Code.fromAsset(path.join(__dirname, './lambda/post_provision_hooks')),
       timeout: Duration.seconds(900),
@@ -181,7 +181,7 @@ export class IotVendingMachine extends Construct {
 
     // Lambda that configures the rpi-image-builder and stores it in the pipeline source bucket
     const preProvisionHooksFunction = new lambda.Function(this, 'PreProvisionHooksFunction', {
-      runtime: lambda.Runtime.PYTHON_3_7,
+      runtime: lambda.Runtime.PYTHON_3_12,
       handler: 'app.on_event',
       code: lambda.Code.fromAsset(path.join(__dirname, './lambda/pre_provision_hooks')),
       timeout: Duration.seconds(60),

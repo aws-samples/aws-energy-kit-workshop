@@ -18,12 +18,12 @@ export class TimeStreamReader extends Construct {
 
     this.lambda = new lambda.Function(this, 'TimestreamReaderUDQ', {
       code: lambda.Code.fromAsset(path.join(__dirname, './lambda')),
-      runtime: lambda.Runtime.PYTHON_3_9,
+      runtime: lambda.Runtime.PYTHON_3_12,
       handler: "udq_data_reader.lambda_handler",
       layers: [
         new lambda.LayerVersion(this, 'UdqUtilsLayer', {
           code: lambda.Code.fromAsset(path.join(__dirname, './layer')),
-          compatibleRuntimes: [lambda.Runtime.PYTHON_3_9],
+          compatibleRuntimes: [lambda.Runtime.PYTHON_3_12],
           description: 'A layer to support Timestream reader for ',
         }),
       ],
